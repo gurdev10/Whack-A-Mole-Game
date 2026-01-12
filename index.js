@@ -48,7 +48,7 @@ var moleTimeout;
 
 var score = 0;
 
-var timeLeft = 30;
+var timeLeft = 5;
 var timerInterval;
 
 var gameOver = false;
@@ -62,7 +62,7 @@ function attachStartListener() {
     }
 }
 
-$(document).one("keydown touchstart", function () {
+$(document).one("keydown pointerdown", function () {
     playSound("click");
     attachStartListener();
 });
@@ -89,7 +89,7 @@ function moveMole() {
 }
 
 
-$(".mole").on("click touchstart", function (e) {
+$(".mole").on("pointerdown", function (e) {
 
     e.preventDefault();
     if (!started || gameOver) return;
@@ -125,7 +125,7 @@ function startTimer() {
 }
 
 function resetAll() {
-    timeLeft = 30;
+    timeLeft = 5;
     gameOver = false;
     started = false;
 
@@ -155,14 +155,15 @@ function resetGame() {
     attachStartListener();
 }
 
-$("#re-box span:nth-child(3)").on("click touchstart", function () {
+$("#re-box span:nth-child(3)").on("pointerdown", function () {
     playSound("click");
     resetGame();
 });
 
-$(".cross").on("click touchstart", function (e) {
+$(".cross").on("pointerdown", function (e) {
 
     e.preventDefault();
+    e.stopPropagation();
     playSound("click");
 
     score = 0;
@@ -171,7 +172,7 @@ $(".cross").on("click touchstart", function (e) {
     $("#game").removeClass("restart1");
     $("#re-box").removeClass("index");
     $(".heading").html("<span>PRESS ANY KEY OR TOUCH TO START THE GAME</span>");
-    $(document).one("keydown touchstart", function () {
+    $(document).one("keydown pointerdown", function () {
         playSound("click");
         attachStartListener();
     });
