@@ -48,7 +48,7 @@ var moleTimeout;
 
 var score = 0;
 
-var timeLeft = 5;
+var timeLeft = 30;
 var timerInterval;
 
 var gameOver = false;
@@ -125,7 +125,7 @@ function startTimer() {
 }
 
 function resetAll() {
-    timeLeft = 5;
+    timeLeft = 30;
     gameOver = false;
     started = false;
 
