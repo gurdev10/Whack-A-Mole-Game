@@ -1,0 +1,258 @@
+/* New concept: pointer-events*/
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(120, 67, 1);
+}
+
+#game {
+    min-height: 80vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1.7rem;
+    align-items: center;
+    justify-items: center;
+    background-color: rgb(120, 67, 1);
+}
+
+.heading {
+    color: rgb(56, 17, 1);
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hole {
+    width: 70%;
+    padding-top: 18%;
+    overflow: hidden;
+}
+
+.hole:nth-child(4) {
+    grid-column: 2/3;
+    transform: translateX(-50%);
+}
+
+.hole:nth-child(5) {
+    grid-column: 3/4;
+    transform: translateX(-50%);
+}
+
+.topImage,
+.bottomImage {
+    display: block;
+    width: 100%;
+}
+
+.hole .topImage {
+    z-index: 1;
+}
+
+.bottom {
+    position: relative;
+}
+
+.hole .bottomImage {
+    position: relative;
+    width: 100%;
+    z-index: 3;
+}
+
+.hole .mole {
+    position: absolute;
+    z-index: 2;
+    width: 35%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.mole.active {
+    pointer-events: auto;
+}
+
+.restart1 {
+    filter: blur(5px);
+}
+
+.restart2 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem;
+    gap: 2rem;
+    z-index: -1;
+    width: 50%;
+    height: auto;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    color: rgb(56, 17, 1);
+    background-color: rgb(230, 123, 41);
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+}
+
+.restart2 span:nth-child(3) {
+    background-color: rgb(186, 86, 28);
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border: 1px solid white;
+    border-radius: 0.4rem;
+}
+
+.restart2 span:nth-child(2) {
+    font-weight: bold;
+}
+
+.restart2 span:nth-child(1) {
+    font-size: 2rem;
+    font-weight: 1000;
+}
+
+.restart2 span:nth-child(3):hover {
+    background-color: rgb(209, 102, 20);
+    cursor: pointer;
+}
+
+.index {
+    z-index: 10;
+}
+
+.cross {
+    position: absolute;
+    border-radius: 0 0.5rem 0 0;
+    left: 100%;
+    bottom: 100%;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 0.7rem 1rem;
+    transform: translateX(-100%) translateY(100%);
+}
+
+.cross:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    .heading {
+        font-size: 1.8rem;
+        padding: 0.8rem;
+    }
+
+    .container {
+        gap: 1.4rem;
+    }
+
+    .hole {
+        width: 75%;
+        padding-top: 20%;
+    }
+
+    .restart2 {
+        width: 55%;
+        inset: 47% auto auto 50%;
+        gap: 1.8rem;
+        font-size: 1.4rem;
+        padding: 1.8rem;
+    }
+
+    .restart2 span:nth-child(1) {
+        font-size: 1.9rem;
+        font-weight: 900;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: 1.2rem;
+    }
+
+    .hole {
+        width: 80%;
+        padding-top: 22%;
+    }
+
+    .heading {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .restart2 {
+        width: 65%;
+        inset: 43% auto auto 50%;
+        gap: 1.6rem;
+        font-size: 1.2rem;
+        padding: 1.6rem;
+    }
+
+    .restart2 span:nth-child(1) {
+        font-size: 1.6rem;
+        font-weight: 800;
+    }
+
+    .cross {
+        font-size: 1.4rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #game {
+        min-height: 70vh;
+        max-height: 85vh;
+    }
+
+    .container {
+        gap: 1rem;
+    }
+
+    .hole {
+        width: 85%;
+        padding-top: 26%;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+        padding: 1.1rem;
+    }
+
+    .restart2 {
+        width: 80%;
+        inset: 40% auto auto 50%;
+        gap: 1.4rem;
+        font-size: 1.1rem;
+        padding: 1.4rem;
+    }
+
+    .restart2 span:nth-child(1) {
+        font-size: 1.4rem;
+        font-weight: 900;
+    }
+
+    .cross {
+        font-size: 1.2rem;
+        padding: 0.5rem 0.6rem;
+    }
+}
