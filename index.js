@@ -50,15 +50,24 @@ var score = 0;
 
 var timeLeft = 30;
 var timerInterval;
+var speed = 0;
 
 var gameOver = false;
+
+function getUpDelay() {
+    return Math.max(300, 1000 - speed * 65);
+}
+
+function getDownDelay() {
+    return Math.max(400, 1000 - speed * 55);
+}
 
 function attachStartListener() {
     if (!started || gameOver) {
         $(".heading").html("<span id='score'>Score : " + score + "</span><span id='time'>Time : " + timeLeft + "</span>");
         started = true;
         startTimer();
-        setTimeout(moveMole, 1000);
+        setTimeout(moveMole, getUpDelay());
     }
 }
 
@@ -84,8 +93,8 @@ function moveMole() {
 
         $("#" + currentMole).animate({ top: "0%" });
         playSound("whoosh");
-        moleTimeout = setTimeout(moveMole, 1000);
-    }, 1000);
+        moleTimeout = setTimeout(moveMole, getUpDelay());
+    }, getDownDelay());
 }
 
 
@@ -102,7 +111,7 @@ $(".mole").on("pointerdown", function (e) {
         playSound("hit");
         score++;
         $(".heading").html("<span id='score'>Score : " + score * 10 + "</span><span id='time'>Time : " + timeLeft + "</span>");
-        moleTimeout = setTimeout(moveMole, 1000);
+        moleTimeout = setTimeout(moveMole, getUpDelay());
     }
 });
 
@@ -114,6 +123,7 @@ function playSound(name) {
 
 function startTimer() {
     timerInterval = setInterval(function () {
+        if (timeLeft % 3 === 0) speed++;
         timeLeft--;
         $("#time").text("Time : " + timeLeft);
         if (timeLeft === 0) {
@@ -128,6 +138,7 @@ function resetAll() {
     timeLeft = 30;
     gameOver = false;
     started = false;
+    speed = 1;
 
     clearTimeout(moleTimeout);
     clearInterval(timerInterval);

@@ -256,3 +256,13 @@ body {
         padding: 0.5rem 0.6rem;
     }
 }
+
+@media screen and (orientation: landscape) and (max-width: 480px){
+    .hole {
+        width: 60%;
+    }
+    .restart2 {
+        gap: 1.3rem;
+        padding: 1.3rem;
+    }
+}
